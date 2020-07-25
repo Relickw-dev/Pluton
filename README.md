@@ -96,7 +96,7 @@ void Main()
 }
 ```
 
-## Desktop Class:
+### Desktop Class:
 
 ```c#
 using Pluton.WindowsSystemFeatures;
@@ -114,7 +114,7 @@ void Main()
 }
 ```
 
-## Network Class:
+### Network Class:
 
 ```c#
 using Pluton.WindowsSystemFeatures;

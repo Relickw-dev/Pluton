@@ -1,0 +1,12 @@
+C:\Users\Andrei\source\repos\Pluton\Pluton\bin\Release\Pluton.dll
+C:\Users\Andrei\source\repos\Pluton\Pluton\bin\Release\Pluton.pdb
+C:\Users\Andrei\source\repos\Pluton\Pluton\obj\Release\Pluton.csprojAssemblyReference.cache
+C:\Users\Andrei\source\repos\Pluton\Pluton\obj\Release\Pluton.csproj.CoreCompileInputs.cache
+C:\Users\Andrei\source\repos\Pluton\Pluton\obj\Release\Pluton.dll
+C:\Users\Andrei\source\repos\Pluton\Pluton\obj\Release\Pluton.pdb
+E:\PROJECTS\C#\Pluton\Pluton\bin\Release\Pluton.dll
+E:\PROJECTS\C#\Pluton\Pluton\bin\Release\Pluton.pdb
+E:\PROJECTS\C#\Pluton\Pluton\obj\Release\Pluton.csprojAssemblyReference.cache
+E:\PROJECTS\C#\Pluton\Pluton\obj\Release\Pluton.csproj.CoreCompileInputs.cache
+E:\PROJECTS\C#\Pluton\Pluton\obj\Release\Pluton.dll
+E:\PROJECTS\C#\Pluton\Pluton\obj\Release\Pluton.pdb

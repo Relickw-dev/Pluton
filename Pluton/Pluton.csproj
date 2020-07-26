@@ -43,8 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pluton.cs" />
+    <Compile Include="Utilities\PConsoleWindow.cs" />
+    <Compile Include="Utilities\PProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\PTools.cs" />
+    <Compile Include="WindowsSystemFeatures\PAdministrativeTools.cs" />
+    <Compile Include="WindowsSystemFeatures\PDesktop.cs" />
+    <Compile Include="WindowsSystemFeatures\PNetwork.cs" />
+    <Compile Include="WindowsSystemFeatures\PSecuritySystems.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

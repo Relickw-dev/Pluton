@@ -1,5 +1,7 @@
 # Pluton
 
+![Pluton Logo](/Art/Pluton.png)
+
 ### Process Class:
 
 ```c#

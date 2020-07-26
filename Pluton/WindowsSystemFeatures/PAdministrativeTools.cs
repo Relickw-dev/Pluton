@@ -31,14 +31,12 @@ namespace Pluton.WindowsSystemFeatures
                 if (!enable)
                 {
                     disableRegedit.SetValue("DisableRegistryTools", "1", RegistryValueKind.DWord);
-                    disableRegedit.Close();
                 }
                 else
                 {
                     disableRegedit.DeleteValue("DisableRegistryTools");
-                    disableRegedit.Close();
-
                 }
+                disableRegedit.Close();
             }
             catch (Exception e)
             {
@@ -54,14 +52,12 @@ namespace Pluton.WindowsSystemFeatures
                 if (!enable)
                 {
                     disableCMD.SetValue("DisableCMD", "1", RegistryValueKind.DWord);
-                    disableCMD.Close();
                 }
                 else
                 {
-
                     disableCMD.DeleteValue("DisableCMD");
-                    disableCMD.Close();
                 }
+                disableCMD.Close();
             }
             catch (Exception e)
             {
@@ -77,15 +73,12 @@ namespace Pluton.WindowsSystemFeatures
                 if (!enable)
                 {
                     disableIEOptions.SetValue("NoBrowserOptions", "1", RegistryValueKind.DWord);
-                    disableIEOptions.Close();
                 }
                 else
                 {
-
                     disableIEOptions.DeleteValue("NoBrowserOptions");
-                    disableIEOptions.Close();
-
                 }
+                disableIEOptions.Close();
             }
             catch (Exception e)
             {
@@ -101,16 +94,12 @@ namespace Pluton.WindowsSystemFeatures
                 if (!enable)
                 {
                     disabeControlPanel.SetValue("NoControlPanel", "1", RegistryValueKind.DWord);
-                    disabeControlPanel.Close();
                 }
                 else
                 {
-
                     disabeControlPanel.DeleteValue("NoControlPanel");
-                    disabeControlPanel.Close();
-
-
                 }
+                disabeControlPanel.Close();
             }
             catch (Exception e)
             {
@@ -126,15 +115,12 @@ namespace Pluton.WindowsSystemFeatures
                 if (!enable)
                 {
                     disableSystemProperties.SetValue("NoPropertiesMyComputer", "1", RegistryValueKind.DWord);
-                    disableSystemProperties.Close();
                 }
                 else
                 {
-
                     disableSystemProperties.DeleteValue("NoPropertiesMyComputer");
-                    disableSystemProperties.Close();
-
                 }
+                disableSystemProperties.Close();
             }
             catch (Exception e)
             {

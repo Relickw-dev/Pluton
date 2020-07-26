@@ -29,28 +29,18 @@ namespace Pluton.WindowsSystemFeatures
         }
 
         // ENABLE AND DISABLE INTERNET CONNECTION.
-        public static void InternetConnection(bool enable_t)
+        public static void InternetConnection(bool enable)
         {
-            if (enable_t == false)
+            string args = enable ? "/C ipconfig /renew" : "/C ipconfig /release";
+
+            ProcessStartInfo internet = new ProcessStartInfo()
             {
-                ProcessStartInfo internet = new ProcessStartInfo()
-                {
-                    FileName = "cmd.exe",
-                    Arguments = "/C ipconfig /release",
-                    WindowStyle = ProcessWindowStyle.Hidden
-                };
-                Process.Start(internet);
-            }
-            else if (enable_t)
-            {
-                ProcessStartInfo internet = new ProcessStartInfo()
-                {
-                    FileName = "cmd.exe",
-                    Arguments = "/C ipconfig /renew",
-                    WindowStyle = ProcessWindowStyle.Hidden
-                };
-                Process.Start(internet);
-            }
+                FileName = "cmd.exe",
+                Arguments = args,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+            Process.Start(internet);
+            
         }
     }
 }

@@ -19,6 +19,11 @@ namespace Pluton.Utilities
             Process.Start("shutdown.exe", "-r -t 0");
         }
 
+        public static void AdvancedStartup()
+        {
+            Process.Start("shutdown.exe", "/o /r /t 0");
+        }
+
 
         // MAKE A SCREENSHOT AND SAVE IT IN YOUR PROGRAM DIRECTORY.
         public static void Screenshot(string screenshotName_t)

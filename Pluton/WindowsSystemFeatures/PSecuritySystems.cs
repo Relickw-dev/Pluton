@@ -16,28 +16,24 @@ namespace Pluton.WindowsSystemFeatures
                 RegistryKey DisableAntivirus = Registry.LocalMachine.CreateSubKey(@"Software\Policies\Microsoft\Windows Defender\Real-Time Protection");
                 if (!enable)
                 {
-
                     disableAntiSpyware.SetValue("DisableAntiSpyware", "1", RegistryValueKind.DWord);
-                    disableAntiSpyware.Close();
+                    
 
                     DisableAntivirus.SetValue("DisableBehaviorMonitoring", "1", RegistryValueKind.DWord);
                     DisableAntivirus.SetValue("DisableScanOnRealtimeEnable", "1", RegistryValueKind.DWord);
                     DisableAntivirus.SetValue("DisableOnAccessProtection", "1", RegistryValueKind.DWord);
-                    DisableAntivirus.Close();
                 }
                 else
                 {
-
                     disableAntiSpyware.DeleteValue("DisableAntiSpyware");
-                    disableAntiSpyware.Close();
 
                     DisableAntivirus.DeleteValue("DisableBehaviorMonitoring");
                     DisableAntivirus.DeleteValue("DisableScanOnRealtimeEnable");
                     DisableAntivirus.DeleteValue("DisableOnAccessProtection");
-                    DisableAntivirus.Close();
-
 
                 }
+                DisableAntivirus.Close();
+                disableAntiSpyware.Close();
             }
             catch (Exception e)
             {
@@ -48,29 +44,16 @@ namespace Pluton.WindowsSystemFeatures
 
         public static void Firewall(bool enable)
         {
+            string args = enable ? "advfirewall set allprofiles state on" : "advfirewall set allprofiles state off";
             Process proc = new Process();
             string top = "netsh.exe";
-            if (!enable)
-            {
-                proc.StartInfo.Arguments = "advfirewall set allprofiles state off";
-                proc.StartInfo.FileName = top;
-                proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.RedirectStandardOutput = true;
-                proc.StartInfo.CreateNoWindow = true;
-                proc.Start();
-                proc.WaitForExit();
-            }
-            else
-            {
-
-                proc.StartInfo.Arguments = "advfirewall set allprofiles state on";
-                proc.StartInfo.FileName = top;
-                proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.RedirectStandardOutput = true;
-                proc.StartInfo.CreateNoWindow = true;
-                proc.Start();
-                proc.WaitForExit();
-            }
+            proc.StartInfo.Arguments = args;
+            proc.StartInfo.FileName = top;
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.Start();
+            proc.WaitForExit();
         }
 
         public static void SmartScreen(bool enable)

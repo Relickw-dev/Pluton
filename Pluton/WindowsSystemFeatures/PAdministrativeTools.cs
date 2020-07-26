@@ -1,9 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pluton.WindowsSystemFeatures
 {
@@ -29,13 +25,9 @@ namespace Pluton.WindowsSystemFeatures
             {
                 RegistryKey disableRegedit = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System");
                 if (!enable)
-                {
                     disableRegedit.SetValue("DisableRegistryTools", "1", RegistryValueKind.DWord);
-                }
                 else
-                {
                     disableRegedit.DeleteValue("DisableRegistryTools");
-                }
                 disableRegedit.Close();
             }
             catch (Exception e)
@@ -50,13 +42,9 @@ namespace Pluton.WindowsSystemFeatures
             {
                 RegistryKey disableCMD = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Windows\System");
                 if (!enable)
-                {
                     disableCMD.SetValue("DisableCMD", "1", RegistryValueKind.DWord);
-                }
                 else
-                {
                     disableCMD.DeleteValue("DisableCMD");
-                }
                 disableCMD.Close();
             }
             catch (Exception e)
@@ -71,13 +59,9 @@ namespace Pluton.WindowsSystemFeatures
             {
                 RegistryKey disableIEOptions = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Internet Explore\Restrictions");
                 if (!enable)
-                {
                     disableIEOptions.SetValue("NoBrowserOptions", "1", RegistryValueKind.DWord);
-                }
                 else
-                {
                     disableIEOptions.DeleteValue("NoBrowserOptions");
-                }
                 disableIEOptions.Close();
             }
             catch (Exception e)
@@ -92,13 +76,9 @@ namespace Pluton.WindowsSystemFeatures
             {
                 RegistryKey disabeControlPanel = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer");
                 if (!enable)
-                {
                     disabeControlPanel.SetValue("NoControlPanel", "1", RegistryValueKind.DWord);
-                }
                 else
-                {
                     disabeControlPanel.DeleteValue("NoControlPanel");
-                }
                 disabeControlPanel.Close();
             }
             catch (Exception e)
@@ -113,13 +93,9 @@ namespace Pluton.WindowsSystemFeatures
             {
                 RegistryKey disableSystemProperties = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer");
                 if (!enable)
-                {
                     disableSystemProperties.SetValue("NoPropertiesMyComputer", "1", RegistryValueKind.DWord);
-                }
                 else
-                {
                     disableSystemProperties.DeleteValue("NoPropertiesMyComputer");
-                }
                 disableSystemProperties.Close();
             }
             catch (Exception e)

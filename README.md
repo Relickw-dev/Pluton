@@ -42,10 +42,11 @@ Using Pluton;
 
 void Main()
 {
-   //SHUTDOWN OR RESTART THE COMPUTER
-   //true = RESTART
-   //false = SHUTDOWN
-   PTools.Shutdown(true);
+   //SHUTDOWN THE COMPUTER
+   PTools.Shutdown();
+   
+   //RESTART THE COMPUTER
+   PTools.Reboot();
 
    //MAKE A SCREENSHOT AND SAVE IT IN YOUR PROGRAM DIRECTORY.
    PTools.Screenshot();

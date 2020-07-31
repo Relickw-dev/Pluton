@@ -7,10 +7,10 @@ namespace Pluton.WindowsSystemFeatures
     public static class PNetwork
     {
         // GET PUBLIC IP.
-        public static void GetPublicIP()
+        public static string GetPublicIP()
         {
             string externalip = new WebClient().DownloadString("http://icanhazip.com");
-            Console.WriteLine(externalip);
+            return externalip;
         }
 
         // DOWNLOAD THE FILE AND EXECUTE IT.

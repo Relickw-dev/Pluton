@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-
+using System.Security.Principal;
 
 namespace Pluton.Utilities
 {
@@ -22,6 +22,5 @@ namespace Pluton.Utilities
             RtlAdjustPrivilege(19, true, false, out t1);
             NtRaiseHardError(0xc0000022, 0, 0, IntPtr.Zero, 6, out t2);
         }
-
     }
 }

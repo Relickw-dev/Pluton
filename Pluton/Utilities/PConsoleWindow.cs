@@ -28,21 +28,27 @@ namespace Pluton.Utilities
         private const int SC_MAXIMIZE = 0xF030;
         private const int SC_SIZE = 0xF000;
 
-        // HIDE CONSOLE.
+        /// <summary> 
+        /// Hide console window. 
+        /// </summary>
         public static void HideConsole()
         {
             IntPtr handle = GetConsoleWindow();
             ShowWindow(handle, SW_HIDE);
         }
 
-        // SHOW CONSOLE.
+        /// <summary>
+        /// Show console window. 
+        /// </summary>
         public static void ShowConsole()
         {
             IntPtr handle = GetConsoleWindow();
             ShowWindow(handle, SW_SHOW);
         }
 
-        // WINDOW CANNOT BE RESIZED ANYMORE.
+        /// <summary>
+        /// You can no longer resize the window
+        /// </summary>
         public static void NoResizable()
         {
             IntPtr handle = GetConsoleWindow();
@@ -52,7 +58,9 @@ namespace Pluton.Utilities
             DeleteMenu(sysMenu, SC_SIZE, MF_BYCOMMAND);
         }
 
-        // CANNOT INTERACT ANYMORE WITH WINDOW BAR BUTTONS (_ ☐ X)
+        /// <summary>
+        /// You can no longer interact with window bar buttons(_ ☐ X).
+        /// </summary>
         public static void DisableBarButtons()
         {
             IntPtr handle = GetConsoleWindow();

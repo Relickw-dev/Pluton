@@ -19,35 +19,50 @@ namespace Pluton.Utilities
             SHRB_NOSOUND = 0x00000004
         }
 
-        // SHUTDOWN THE COMPUTER
+
+        /// <summary> 
+        /// Shutdown the computer. 
+        /// </summary>
         public static void Shutdown()
         {
             Process.Start("shutdown.exe", "/s /f /t 0");
         }
 
-        // RESTART THE COMPUTER
+        /// <summary> 
+        /// Restart the computer. 
+        /// </summary>
         public static void Restart()
         {
             Process.Start("shutdown.exe", "-r -t 0");
         }
 
+        /// <summary> 
+        /// Restart the computer in advanced mode. 
+        /// </summary>
         public static void AdvancedStartup()
         {
             Process.Start("shutdown.exe", "/o /r /t 0");
         }
 
-
-        // MAKE A SCREENSHOT AND SAVE IT IN YOUR PROGRAM DIRECTORY.
-        public static void Screenshot(string screenshotName_t)
+        /// <summary> 
+        /// Make a screenshot. 
+        /// </summary>
+        /// <param name="screenshotName">
+        /// Name of the output file.
+        /// </param>
+        public static void Screenshot(string screenshotName)
         {
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.CopyFromScreen(0, 0, 0, 0, Screen.PrimaryScreen.Bounds.Size);
-                bmp.Save(screenshotName_t + ".png");  // saves the image
+                bmp.Save(screenshotName + ".png");  // saves the image
             }
         }
 
+        /// <summary> 
+        /// Clear system temp. 
+        /// </summary>
         public static void ClearSystemTemp()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
@@ -74,7 +89,9 @@ namespace Pluton.Utilities
             }
         }
 
-
+        /// <summary> 
+        /// Clear user temp. 
+        /// </summary>
         public static void ClearUserTemp()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
@@ -102,6 +119,9 @@ namespace Pluton.Utilities
             
         }
 
+        /// <summary> 
+        /// Clear recycle bin. 
+        /// </summary>
         public static void ClearRecycleBin()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG

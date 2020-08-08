@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Security.Principal;
 
 namespace Pluton.Utilities
 {
@@ -14,7 +13,9 @@ namespace Pluton.Utilities
 
 
 
-        // MAKE PROCESS CRITICAL (WHEN YOU END THE PROCESS A BSOD WILL APPEAR).
+        /// <summary>
+        /// Make process critical (when you end the process a bsod will appear).
+        /// </summary>
         public static void MakeCritical()
         {
             bool t1;

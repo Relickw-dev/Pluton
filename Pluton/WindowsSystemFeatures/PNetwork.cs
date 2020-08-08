@@ -1,19 +1,26 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net;
 
 namespace Pluton.WindowsSystemFeatures
 {
     public static class PNetwork
     {
-        // GET PUBLIC IP.
-        public static string GetPublicIP()
+        /// <summary>
+        /// Get public IP.
+        /// </summary>
+        public static string GetPublicIP
         {
-            string externalip = new WebClient().DownloadString("http://icanhazip.com");
-            return externalip;
+            get
+            {
+                return new WebClient().DownloadString("http://icanhazip.com");
+            }
         }
 
-        // DOWNLOAD THE FILE AND EXECUTE IT.
+        /// <summary>
+        /// Download a file and execute it.
+        /// </summary>
+        /// <param name="url">File url.</param>
+        /// <param name="filePath">File path.</param>
         public static void DownloadAndExecute(string url, string filePath)
         {
             WebClient wbb = new WebClient();
@@ -21,14 +28,21 @@ namespace Pluton.WindowsSystemFeatures
             Process.Start(filePath);
         }
 
-        // JUST DOWNLOAD A FILE.
+        /// <summary>
+        /// Download a file.
+        /// </summary>
+        /// <param name="url">File url.</param>
+        /// <param name="filePath">File path.</param>
         public static void Download(string url, string filePath)
         {
             WebClient wbb = new WebClient();
             wbb.DownloadFile(url, filePath);
         }
 
-        // ENABLE AND DISABLE INTERNET CONNECTION.
+        /// <summary>
+        /// Enable or disable the internet connection.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void InternetConnection(bool enable)
         {
             string args = enable ? "/C ipconfig /renew" : "/C ipconfig /release";

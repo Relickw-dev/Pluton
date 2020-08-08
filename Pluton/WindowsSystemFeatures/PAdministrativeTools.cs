@@ -5,12 +5,17 @@ namespace Pluton.WindowsSystemFeatures
 {
     public static class PAdministrativeTools
     {
+
+        /// <summary>
+        /// Enable or disable task manager.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void TaskMgr(bool enable)
         {
             try
             {
                 RegistryKey disableTaskMgr = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System");
-                disableTaskMgr.SetValue("DisableTaskMgr", enable ? "1`" : "0");
+                disableTaskMgr.SetValue("DisableTaskMgr", enable ? "ENABLE" : "1");
                 disableTaskMgr.Close();
             }
             catch (Exception e)
@@ -19,6 +24,10 @@ namespace Pluton.WindowsSystemFeatures
             }
         }
 
+        /// <summary>
+        /// Enable or disable registry editor.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void Regedit(bool enable)
         {
             try
@@ -36,6 +45,10 @@ namespace Pluton.WindowsSystemFeatures
             }
         }
 
+        /// <summary>
+        /// Enable or disable command line.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void CMD(bool enable)
         {
             try
@@ -53,6 +66,10 @@ namespace Pluton.WindowsSystemFeatures
             }
         }
 
+        /// <summary>
+        /// Enable or disable internet explorer options.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void IEOptions(bool enable)
         {
             try
@@ -70,6 +87,10 @@ namespace Pluton.WindowsSystemFeatures
             }
         }
 
+        /// <summary>
+        /// Enable or disable control panel and windows settings.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void ControlPanel(bool enable)
         {
             try
@@ -87,6 +108,10 @@ namespace Pluton.WindowsSystemFeatures
             }
         }
 
+        /// <summary>
+        /// Enable or disable system properties.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void SystemProperties(bool enable)
         {
             try
@@ -104,6 +129,10 @@ namespace Pluton.WindowsSystemFeatures
             }
         }
 
+        /// <summary>
+        /// Enable or disable administrative tools.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable</param>
         public static void AdministrativeTools(bool enable)
         {
             try

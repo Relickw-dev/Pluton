@@ -8,6 +8,10 @@ namespace Pluton.WindowsSystemFeatures
 {
     public static class PSecuritySystems
     {
+        /// <summary>
+        /// Enable or disable windows defender.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable </param>
         public static void WindowsDefender(bool enable)
         {
             try
@@ -39,6 +43,10 @@ namespace Pluton.WindowsSystemFeatures
 
         }
 
+        /// <summary>
+        /// Enable or disable firewall.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable </param>
         public static void Firewall(bool enable)
         {
             string args = enable ? "advfirewall set allprofiles state on" : "advfirewall set allprofiles state off";
@@ -53,6 +61,10 @@ namespace Pluton.WindowsSystemFeatures
             proc.WaitForExit();
         }
 
+        /// <summary>
+        /// Enable or disable smart screen.
+        /// </summary>
+        /// <param name="enable">true = enable; false = disable </param>
         public static void SmartScreen(bool enable)
         {
             try
@@ -67,6 +79,9 @@ namespace Pluton.WindowsSystemFeatures
             }
         }
 
+        /// <summary>
+        /// Disable user account control.
+        /// </summary>
         public static void DisableUAC()
         {
             try

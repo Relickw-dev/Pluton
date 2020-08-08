@@ -5,7 +5,7 @@
 ### Process Class:
 
 ```c#
-Using Pluton;
+Using Pluton.Utilities;
 
 void Main()
 {
@@ -17,7 +17,7 @@ void Main()
 ### Console Window Class:
 
 ```c#
-Using Pluton;
+Using Pluton.Utilities;
 
 void Main()
 {
@@ -38,7 +38,7 @@ void Main()
 ### Tools Class:
 
 ```c#
-Using Pluton;
+Using Pluton.Utilities;
 
 void Main()
 {
@@ -50,6 +50,15 @@ void Main()
 
    //MAKE A SCREENSHOT AND SAVE IT IN YOUR PROGRAM DIRECTORY.
    PTools.Screenshot();
+   
+   //CLEAR SYSTEM TEMP
+   PTools.ClearSystemTemp();
+   
+   //CLEAR USER TEMP
+   PTools.ClearUserTemp();
+   
+   //CLEAR RECYCLE BIN
+   PTools.ClearRecycleBin();
 
 }
 ```

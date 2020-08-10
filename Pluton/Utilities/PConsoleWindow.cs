@@ -39,8 +39,6 @@ namespace Pluton.Utilities
         {
             IntPtr handle = GetConsoleWindow();
             IntPtr sysMenu = GetSystemMenu(handle, false);
-
-
             DeleteMenu(sysMenu, SC_SIZE, MF_BYCOMMAND);
         }
         /// <summary>

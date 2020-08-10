@@ -62,25 +62,32 @@ namespace Pluton.Utilities
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
 
-            string path = Environment.GetEnvironmentVariable(TEMP_ENVIRONMENT_VARIABLE, EnvironmentVariableTarget.Machine);
-            string[] files = Directory.GetFiles(path);
-            string[] folders = Directory.GetDirectories(path);
-            foreach (var file in files)
+            try
             {
-                try
+                string path = Environment.GetEnvironmentVariable(TEMP_ENVIRONMENT_VARIABLE, EnvironmentVariableTarget.Machine);
+                string[] files = Directory.GetFiles(path);
+                string[] folders = Directory.GetDirectories(path);
+                foreach (var file in files)
                 {
-                    File.SetAttributes(file, FileAttributes.Normal);
-                    File.Delete(file);
+                    try
+                    {
+                        File.SetAttributes(file, FileAttributes.Normal);
+                        File.Delete(file);
+                    }
+                    catch { }
                 }
-                catch { }
+                foreach (var folder in folders)
+                {
+                    try
+                    {
+                        Directory.Delete(folder, true);
+                    }
+                    catch { }
+                }
             }
-            foreach (var folder in folders)
+            catch(Exception e)
             {
-                try
-                {
-                    Directory.Delete(folder, true);
-                }
-                catch { }
+                Console.WriteLine(e);
             }
         }
         /// <summary> 
@@ -89,26 +96,34 @@ namespace Pluton.Utilities
         public void ClearUserTemp()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
-            string path = Path.GetTempPath();
-            string[] files = Directory.GetFiles(path);
-            string[] directories = Directory.GetDirectories(path);
-            foreach (var file in files)
+            
+            try
             {
-                try
+                string path = Path.GetTempPath();
+                string[] files = Directory.GetFiles(path);
+                string[] directories = Directory.GetDirectories(path);
+                foreach (var file in files)
                 {
-                    File.SetAttributes(file, FileAttributes.Normal);
-                    File.Delete(file);
+                    try
+                    {
+                        File.SetAttributes(file, FileAttributes.Normal);
+                        File.Delete(file);
+                    }
+                    catch { }
                 }
-                catch {}
-            }
 
-            foreach (var folders in directories)
-            {
-                try
+                foreach (var folders in directories)
                 {
-                    Directory.Delete(folders, true);
+                    try
+                    {
+                        Directory.Delete(folders, true);
+                    }
+                    catch { }
                 }
-                catch {}
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
             
         }

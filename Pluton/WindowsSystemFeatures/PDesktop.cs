@@ -1,10 +1,11 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
+using static Pluton.Constants.PDesktopConstants;
 
 namespace Pluton.WindowsSystemFeatures
 {
-    public static class PDesktop
+    public class PDesktop
     {
         [DllImport("user32.dll")]
         private static extern int FindWindow(string className, string windowText);
@@ -15,45 +16,40 @@ namespace Pluton.WindowsSystemFeatures
         [DllImport("user32.dll", SetLastError = true)]
         static extern IntPtr FindWindowEx(IntPtr hwndParent,
         IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
-
-        private const int SW_HIDE = 0;
-        private const int SW_SHOW = 1;
+        
 
         /// <summary>
         /// Hide task bar.
         /// </summary>
-        public static void HideTaskBar()
+        public void HideTaskBar()
         {
-            int hwnd = FindWindow("Shell_TrayWnd", "");
+            int hwnd = FindWindow(TASK_BAR_WINDOW, "");
             ShowWindow(hwnd, SW_HIDE);
         }
-
         /// <summary>
         /// Show task bar.
         /// </summary>
-        public static void ShowTaskBar()
+        public void ShowTaskBar()
         {
-            int hwnd = FindWindow("Shell_TrayWnd", "");
+            int hwnd = FindWindow(TASK_BAR_WINDOW, "");
             ShowWindow(hwnd, SW_SHOW);
         }
-
         /// <summary>
         /// Switch between light and dark theme.
         /// </summary>
         /// <param name="light">true = light theme; false = dark theme</param>
-        public static void SetTheme(bool light)
+        public void SetTheme(bool light)
         {
             try
             {
-                GetPersonalizeKey().SetValue("AppsUseLightTheme", light ? 1 : 0, RegistryValueKind.DWord);
-                GetPersonalizeKey().SetValue("SystemUsesLightTheme", light ? 1 : 0, RegistryValueKind.DWord);
+                GetPersonalizeKey().SetValue(APPS_USE_LIGHT_THEME_REGISTRY_VALUE, light ? 1 : 0, RegistryValueKind.DWord);
+                GetPersonalizeKey().SetValue(SYSTEM_USE_LIGHT_THEME_REGISTRY_VALUE, light ? 1 : 0, RegistryValueKind.DWord);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
         }
-
-        private static RegistryKey GetPersonalizeKey() => Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", true);
+        private RegistryKey GetPersonalizeKey() => Registry.CurrentUser.OpenSubKey(PERSONALIZE_REGISTRY_KEY, true);
     }
 }

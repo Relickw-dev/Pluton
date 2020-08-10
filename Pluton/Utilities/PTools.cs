@@ -4,12 +4,12 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static Pluton.Constants.PToolsConstants;
 
 namespace Pluton.Utilities
 {
-    public static class PTools
+    public class PTools
     {
-
         [DllImport("Shell32.dll", CharSet = CharSet.Unicode)]
         static extern uint SHEmptyRecycleBin(IntPtr hwnd, string pszRootPath, RecycleFlags dwFlags);
         enum RecycleFlags : uint
@@ -19,55 +19,50 @@ namespace Pluton.Utilities
             SHRB_NOSOUND = 0x00000004
         }
 
-
         /// <summary> 
         /// Shutdown the computer. 
         /// </summary>
-        public static void Shutdown()
+        public void Shutdown()
         {
-            Process.Start("shutdown.exe", "/s /f /t 0");
+            Process.Start(SHUTDOWN_PROCESS, SHUTDOWN_ARGS);
         }
-
         /// <summary> 
         /// Restart the computer. 
         /// </summary>
-        public static void Restart()
+        public void Restart()
         {
-            Process.Start("shutdown.exe", "-r -t 0");
+            Process.Start(SHUTDOWN_PROCESS, RESTART_ARGS);
         }
-
         /// <summary> 
         /// Restart the computer in advanced mode. 
         /// </summary>
-        public static void AdvancedStartup()
+        public void AdvancedStartup()
         {
-            Process.Start("shutdown.exe", "/o /r /t 0");
+            Process.Start(SHUTDOWN_PROCESS, ADVANCED_STARTUP_ARGS);
         }
-
         /// <summary> 
         /// Make a screenshot. 
         /// </summary>
         /// <param name="screenshotName">
         /// Name of the output file.
         /// </param>
-        public static void Screenshot(string screenshotName)
+        public void Screenshot(string screenshotName)
         {
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.CopyFromScreen(0, 0, 0, 0, Screen.PrimaryScreen.Bounds.Size);
-                bmp.Save(screenshotName + ".png");  // saves the image
+                bmp.Save(screenshotName + PNG_IMAGE_FORMAT);  // saves the image
             }
         }
-
         /// <summary> 
         /// Clear system temp. 
         /// </summary>
-        public static void ClearSystemTemp()
+        public void ClearSystemTemp()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
 
-            string path = Environment.GetEnvironmentVariable("TEMP", EnvironmentVariableTarget.Machine);
+            string path = Environment.GetEnvironmentVariable(TEMP_ENVIRONMENT_VARIABLE, EnvironmentVariableTarget.Machine);
             string[] files = Directory.GetFiles(path);
             string[] folders = Directory.GetDirectories(path);
             foreach (var file in files)
@@ -88,11 +83,10 @@ namespace Pluton.Utilities
                 catch { }
             }
         }
-
         /// <summary> 
         /// Clear user temp. 
         /// </summary>
-        public static void ClearUserTemp()
+        public void ClearUserTemp()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
             string path = Path.GetTempPath();
@@ -118,11 +112,10 @@ namespace Pluton.Utilities
             }
             
         }
-
         /// <summary> 
         /// Clear recycle bin. 
         /// </summary>
-        public static void ClearRecycleBin()
+        public void ClearRecycleBin()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
             try

@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\PAdministrativeToolsConstants.cs" />
+    <Compile Include="Constants\PConsoleWindowConstants.cs" />
+    <Compile Include="Constants\PDesktopConstants.cs" />
+    <Compile Include="Constants\PNetworkConstants.cs" />
+    <Compile Include="Constants\PProcessConstants.cs" />
+    <Compile Include="Constants\PSecuritySistemsConstants.cs" />
+    <Compile Include="Constants\PToolsConstants.cs" />
     <Compile Include="Utilities\PConsoleWindow.cs" />
     <Compile Include="Utilities\PProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

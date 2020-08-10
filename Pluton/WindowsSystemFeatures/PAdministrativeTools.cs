@@ -1,21 +1,21 @@
 ﻿using Microsoft.Win32;
 using System;
+using static Pluton.Constants.PAdministrativeToolsConstants;
 
 namespace Pluton.WindowsSystemFeatures
 {
-    public static class PAdministrativeTools
+    public class PAdministrativeTools
     {
-
         /// <summary>
         /// Enable or disable task manager.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public static void TaskMgr(bool enable)
+        public void TaskMgr(bool enable)
         {
             try
             {
-                RegistryKey disableTaskMgr = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System");
-                disableTaskMgr.SetValue("DisableTaskMgr", enable ? "ENABLE" : "1");
+                RegistryKey disableTaskMgr = Registry.CurrentUser.CreateSubKey(SYSTEM_REGISTRY_KEY);
+                disableTaskMgr.SetValue(DISABLE_TASK_MANAGER_REGISTRY_VALUE, enable ? ENABLE : DISABLE);
                 disableTaskMgr.Close();
             }
             catch (Exception e)
@@ -23,20 +23,19 @@ namespace Pluton.WindowsSystemFeatures
                 Console.WriteLine(e);
             }
         }
-
         /// <summary>
         /// Enable or disable registry editor.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public static void Regedit(bool enable)
+        public void Regedit(bool enable)
         {
             try
             {
-                RegistryKey disableRegedit = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System");
+                RegistryKey disableRegedit = Registry.CurrentUser.CreateSubKey(SYSTEM_REGISTRY_KEY);
                 if (!enable)
-                    disableRegedit.SetValue("DisableRegistryTools", "1", RegistryValueKind.DWord);
+                    disableRegedit.SetValue(DISABLE_REGISTRY_TOOLS_REGISTRY_VALUE, DISABLE, RegistryValueKind.DWord);
                 else
-                    disableRegedit.DeleteValue("DisableRegistryTools");
+                    disableRegedit.DeleteValue(DISABLE_REGISTRY_TOOLS_REGISTRY_VALUE);
                 disableRegedit.Close();
             }
             catch (Exception e)
@@ -44,20 +43,19 @@ namespace Pluton.WindowsSystemFeatures
                 Console.WriteLine(e);
             }
         }
-
         /// <summary>
         /// Enable or disable command line.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public static void CMD(bool enable)
+        public void CMD(bool enable)
         {
             try
             {
-                RegistryKey disableCMD = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Windows\System");
+                RegistryKey disableCMD = Registry.CurrentUser.CreateSubKey(SYSTEM_REGISTRY_KEY_2);
                 if (!enable)
-                    disableCMD.SetValue("DisableCMD", "1", RegistryValueKind.DWord);
+                    disableCMD.SetValue(DISABLE_CMD_REGISTRY_VALUE, DISABLE, RegistryValueKind.DWord);
                 else
-                    disableCMD.DeleteValue("DisableCMD");
+                    disableCMD.DeleteValue(DISABLE_CMD_REGISTRY_VALUE);
                 disableCMD.Close();
             }
             catch (Exception e)
@@ -65,20 +63,19 @@ namespace Pluton.WindowsSystemFeatures
                 Console.WriteLine(e);
             }
         }
-
         /// <summary>
         /// Enable or disable internet explorer options.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public static void IEOptions(bool enable)
+        public void IEOptions(bool enable)
         {
             try
             {
-                RegistryKey disableIEOptions = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Internet Explore\Restrictions");
+                RegistryKey disableIEOptions = Registry.CurrentUser.CreateSubKey(RESTRICTIONS_REGISTRY_KEY);
                 if (!enable)
-                    disableIEOptions.SetValue("NoBrowserOptions", "1", RegistryValueKind.DWord);
+                    disableIEOptions.SetValue(DISABLE_IE_REGISTRY_VALUE, DISABLE, RegistryValueKind.DWord);
                 else
-                    disableIEOptions.DeleteValue("NoBrowserOptions");
+                    disableIEOptions.DeleteValue(DISABLE_IE_REGISTRY_VALUE);
                 disableIEOptions.Close();
             }
             catch (Exception e)
@@ -86,20 +83,19 @@ namespace Pluton.WindowsSystemFeatures
                 Console.WriteLine(e);
             }
         }
-
         /// <summary>
         /// Enable or disable control panel and windows settings.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public static void ControlPanel(bool enable)
+        public void ControlPanel(bool enable)
         {
             try
             {
-                RegistryKey disabeControlPanel = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer");
+                RegistryKey disabeControlPanel = Registry.CurrentUser.CreateSubKey(EXPLORER_REGISTRY_KEY);
                 if (!enable)
-                    disabeControlPanel.SetValue("NoControlPanel", "1", RegistryValueKind.DWord);
+                    disabeControlPanel.SetValue(DISABLE_CONTROL_PANEL_REGISTRY_VALUE, DISABLE, RegistryValueKind.DWord);
                 else
-                    disabeControlPanel.DeleteValue("NoControlPanel");
+                    disabeControlPanel.DeleteValue(DISABLE_CONTROL_PANEL_REGISTRY_VALUE);
                 disabeControlPanel.Close();
             }
             catch (Exception e)
@@ -107,39 +103,20 @@ namespace Pluton.WindowsSystemFeatures
                 Console.WriteLine(e);
             }
         }
-
         /// <summary>
         /// Enable or disable system properties.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public static void SystemProperties(bool enable)
+        public void SystemProperties(bool enable)
         {
             try
             {
-                RegistryKey disableSystemProperties = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer");
+                RegistryKey disableSystemProperties = Registry.CurrentUser.CreateSubKey(EXPLORER_REGISTRY_KEY);
                 if (!enable)
-                    disableSystemProperties.SetValue("NoPropertiesMyComputer", "1", RegistryValueKind.DWord);
+                    disableSystemProperties.SetValue(DISABLE_SYSTEM_PROPERTIES_REGISTRY_VALUE, DISABLE, RegistryValueKind.DWord);
                 else
-                    disableSystemProperties.DeleteValue("NoPropertiesMyComputer");
+                    disableSystemProperties.DeleteValue(DISABLE_SYSTEM_PROPERTIES_REGISTRY_VALUE);
                 disableSystemProperties.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        /// <summary>
-        /// Enable or disable administrative tools.
-        /// </summary>
-        /// <param name="enable">true = enable; false = disable</param>
-        public static void AdministrativeTools(bool enable)
-        {
-            try
-            {
-                RegistryKey HideAdministrativeTools = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced");
-                HideAdministrativeTools.SetValue("StartMenuAdminTools", enable ? "1" : "0", RegistryValueKind.DWord);
-                HideAdministrativeTools.Close();
             }
             catch (Exception e)
             {

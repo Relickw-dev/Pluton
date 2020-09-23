@@ -13,7 +13,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable windows defender.
         /// </summary>
         /// <param name="enable">true = enable; false = disable </param>
-        public void WindowsDefender(bool enable)
+        public static void WindowsDefender(bool enable)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable firewall.
         /// </summary>
         /// <param name="enable">true = enable; false = disable </param>
-        public void Firewall(bool enable)
+        public static void Firewall(bool enable)
         {
             string args = enable ? ENABLE_FIREWALL : DISABLE_FIREWALL;
             Process proc = new Process();
@@ -63,7 +63,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable smart screen.
         /// </summary>
         /// <param name="enable">true = enable; false = disable </param>
-        public void SmartScreen(bool enable)
+        public static void SmartScreen(bool enable)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Pluton.WindowsSystemFeatures
         /// <summary>
         /// Disable user account control.
         /// </summary>
-        public void DisableUAC()
+        public static void DisableUAC()
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Pluton.WindowsSystemFeatures
                 Console.WriteLine(e);
             }
         }
-        private byte[] StringToByteArray(string hex)
+        private static byte[] StringToByteArray(string hex)
         {
             return Enumerable.Range(0, hex.Length)
                              .Where(x => x % 2 == 0)

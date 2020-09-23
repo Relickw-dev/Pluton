@@ -7,5 +7,6 @@
         internal const string ENABLE_INTERNET_CONNECTION = "/C ipconfig /renew";
         internal const string DISABLE_INTERNET_CONNECTION = "/C ipconfig /release";
         internal const string COMMAND_LINE_PROCESS = "cmd.exe";
+        internal const string SAMPLE_SITE = "http://google.com/generate_204";
     }
 }

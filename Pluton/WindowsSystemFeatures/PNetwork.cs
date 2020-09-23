@@ -10,7 +10,7 @@ namespace Pluton.WindowsSystemFeatures
         /// <summary>
         /// Get public IP.
         /// </summary>
-        public string GetPublicIP
+        public static string GetPublicIP
         {
             get
             {
@@ -30,7 +30,7 @@ namespace Pluton.WindowsSystemFeatures
         /// </summary>
         /// <param name="url">File url.</param>
         /// <param name="filePath">File path.</param>
-        public void DownloadAndExecute(string url, string filePath)
+        public static void DownloadAndExecute(string url, string filePath)
         {
             WebClient wbb = new WebClient();
             wbb.DownloadFile(url, filePath);
@@ -41,7 +41,7 @@ namespace Pluton.WindowsSystemFeatures
         /// </summary>
         /// <param name="url">File url.</param>
         /// <param name="filePath">File path.</param>
-        public void Download(string url, string filePath)
+        public static void Download(string url, string filePath)
         {
             WebClient wbb = new WebClient();
             wbb.DownloadFile(url, filePath);
@@ -50,7 +50,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable the internet connection.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public void InternetConnection(bool enable)
+        public static void InternetConnection(bool enable)
         {
             string args = enable ? ENABLE_INTERNET_CONNECTION : DISABLE_INTERNET_CONNECTION;
 
@@ -61,6 +61,25 @@ namespace Pluton.WindowsSystemFeatures
                 WindowStyle = ProcessWindowStyle.Hidden
             };
             Process.Start(internet);
+        }
+        /// <summary>
+        /// Check if user is connected to an internet source.
+        /// </summary>
+        public static bool CheckForInternetConnection
+        {
+            get
+            {
+                try
+                {
+                    using (var client = new WebClient())
+                    using (client.OpenRead(SAMPLE_SITE))
+                        return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
     }
 }

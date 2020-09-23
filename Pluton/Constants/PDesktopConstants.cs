@@ -1,4 +1,6 @@
-﻿namespace Pluton.Constants
+﻿using System;
+
+namespace Pluton.Constants
 {
     class PDesktopConstants
     {

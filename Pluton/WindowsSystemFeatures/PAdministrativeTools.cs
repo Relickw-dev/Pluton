@@ -10,7 +10,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable task manager.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public void TaskMgr(bool enable)
+        public static void TaskMgr(bool enable)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable registry editor.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public void Regedit(bool enable)
+        public static void Regedit(bool enable)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable command line.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public void CMD(bool enable)
+        public static void CMD(bool enable)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable internet explorer options.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public void IEOptions(bool enable)
+        public static void IEOptions(bool enable)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable control panel and windows settings.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public void ControlPanel(bool enable)
+        public static void ControlPanel(bool enable)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace Pluton.WindowsSystemFeatures
         /// Enable or disable system properties.
         /// </summary>
         /// <param name="enable">true = enable; false = disable</param>
-        public void SystemProperties(bool enable)
+        public static void SystemProperties(bool enable)
         {
             try
             {

@@ -22,21 +22,21 @@ namespace Pluton.Utilities
         /// <summary> 
         /// Shutdown the computer. 
         /// </summary>
-        public void Shutdown()
+        public static void Shutdown()
         {
             Process.Start(SHUTDOWN_PROCESS, SHUTDOWN_ARGS);
         }
         /// <summary> 
         /// Restart the computer. 
         /// </summary>
-        public void Restart()
+        public static void Restart()
         {
             Process.Start(SHUTDOWN_PROCESS, RESTART_ARGS);
         }
         /// <summary> 
         /// Restart the computer in advanced mode. 
         /// </summary>
-        public void AdvancedStartup()
+        public static void AdvancedStartup()
         {
             Process.Start(SHUTDOWN_PROCESS, ADVANCED_STARTUP_ARGS);
         }
@@ -46,7 +46,7 @@ namespace Pluton.Utilities
         /// <param name="screenshotName">
         /// Name of the output file.
         /// </param>
-        public void Screenshot(string screenshotName)
+        public static void Screenshot(string screenshotName)
         {
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             using (Graphics g = Graphics.FromImage(bmp))
@@ -58,89 +58,83 @@ namespace Pluton.Utilities
         /// <summary> 
         /// Clear system temp. 
         /// </summary>
-        public void ClearSystemTemp()
+        public static void ClearSystemTemp()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
-
-            try
-            {
-                string path = Environment.GetEnvironmentVariable(TEMP_ENVIRONMENT_VARIABLE, EnvironmentVariableTarget.Machine);
-                string[] files = Directory.GetFiles(path);
-                string[] folders = Directory.GetDirectories(path);
-                foreach (var file in files)
-                {
-                    try
-                    {
-                        File.SetAttributes(file, FileAttributes.Normal);
-                        File.Delete(file);
-                    }
-                    catch { }
-                }
-                foreach (var folder in folders)
-                {
-                    try
-                    {
-                        Directory.Delete(folder, true);
-                    }
-                    catch { }
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            string path = Environment.GetEnvironmentVariable(TEMP_ENVIRONMENT_VARIABLE, EnvironmentVariableTarget.Machine);
+            ClearAFolder(path);
         }
         /// <summary> 
         /// Clear user temp. 
         /// </summary>
-        public void ClearUserTemp()
+        public static void ClearUserTemp()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
-            
-            try
-            {
-                string path = Path.GetTempPath();
-                string[] files = Directory.GetFiles(path);
-                string[] directories = Directory.GetDirectories(path);
-                foreach (var file in files)
-                {
-                    try
-                    {
-                        File.SetAttributes(file, FileAttributes.Normal);
-                        File.Delete(file);
-                    }
-                    catch { }
-                }
 
-                foreach (var folders in directories)
-                {
-                    try
-                    {
-                        Directory.Delete(folders, true);
-                    }
-                    catch { }
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            string path = Path.GetTempPath();
+            ClearAFolder(path);
+        }
+        /// <summary>
+        /// Clear download folder.
+        /// </summary>
+        public static void ClearDownloadFolder()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads";
+            ClearAFolder(path);
+        }
+        /// <summary>
+        /// Clear prefetch.
+        /// </summary>
+        public static void ClearPrefetch()
+        {
+
+            string path = Environment.ExpandEnvironmentVariables(SYSTEM_ROOT_ENVIRONMENT_VARIABLE) + PREFETCH_FOLDER;
+            ClearAFolder(path);
             
         }
         /// <summary> 
         /// Clear recycle bin. 
         /// </summary>
-        public void ClearRecycleBin()
+        public static void ClearRecycleBin()
         {
             //CODE CREDIT: https://github.com/ArunPrakashG
-            try
+            uint IsSuccess = SHEmptyRecycleBin(IntPtr.Zero, null, RecycleFlags.SHRB_NOCONFIRMATION);
+        }
+        /// <summary>
+        /// Clear a folder.
+        /// </summary>
+        /// <param name="path">Path of the folder.</param>
+        public static void ClearAFolder(string path)
+        {
+            string[] files = Directory.GetFiles(path);
+            string[] folders = Directory.GetDirectories(path);
+            foreach (var file in files)
             {
-                uint IsSuccess = SHEmptyRecycleBin(IntPtr.Zero, null, RecycleFlags.SHRB_NOCONFIRMATION);
+                try
+                {
+                    File.SetAttributes(file, FileAttributes.Normal);
+                    File.Delete(file);
+                }
+                catch { }
             }
-            catch (Exception e)
+            foreach (var folder in folders)
             {
-                Console.WriteLine(e);
+                try
+                {
+                    Directory.Delete(folder, true);
+                }
+                catch { }
             }
+        }
+        /// <summary>
+        /// Toggle caps lock.
+        /// </summary>
+        public static void ToggleCaps()
+        {
+            string filepath = Path.GetTempPath() + TOGGLE_CAPS_VBS_FILE_NAME;
+            if (!File.Exists(filepath))
+                File.WriteAllLines(filepath, TOGGLE_CAPS_VBS_LINES);
+            Process.Start(filepath);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Pluton.Utilities
         /// <summary>
         /// Make process critical (when you end the process a bsod will appear).
         /// </summary>
-        public void MakeCritical()
+        public static void MakeCritical()
         {
             bool t1;
             uint t2;

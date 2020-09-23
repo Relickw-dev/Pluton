@@ -1,6 +1,6 @@
 ﻿namespace Pluton.Constants
 {
-    public class PAdministrativeToolsConstants
+    class PAdministrativeToolsConstants
     {
         internal const string ENABLE = "ENABLE";
         internal const string DISABLE = "1";
